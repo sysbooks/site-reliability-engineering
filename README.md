@@ -27,3 +27,4 @@ Reading the SRE book
 - [インフラチーム改め Site Reliability Engineering (SRE) チームになりました](http://tech.mercari.com/entry/2015/11/18/153421)
 - [メルカリにおける、継続的なアプリケーション改善を支える技術](https://speakerdeck.com/kazeburo/continuous-improvement-applications-and-mercari-sre-number-retty-tech-cafe)
 - [書評: Site Reliability Engineering](http://torumakabe.github.io/post/bookreview_site_reliability_engineering/)
+- [Site Reliability Engineering(SRE)チームとは](http://yoshidashingo.hatenablog.com/entry/2016/03/02/012214)
