@@ -7,8 +7,8 @@ Reading the SRE book
 
 | days  | pages                     | rep.    |
 |-------|:-------------------------:|--------:|
-| 7/19. | Part1. Introduction p3-24 | [dekokun](https://github.com/dekokun) |
-| 7/26. | Part2. Principles p25-48  |         |
+| 7/19. | Chapter 1,2 | [dekokun](https://github.com/dekokun) |
+| 7/26. | Chapter 3,4 | [taketo957](https://github.com/taketo957) [dekokun](https://github.com/dekokun) |
 | 8/2.  | Part2. Principles p49-66  |         |
 | 8/9.  | Part2. Principles p67-86  |         |
 | 8/16. | Part2. Principles p87-106 |         |
