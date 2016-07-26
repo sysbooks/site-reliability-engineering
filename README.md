@@ -9,9 +9,9 @@ Reading the SRE book
 |-------|:-------------------------:|--------:|
 | 7/19. | Chapter 1,2 | [dekokun](https://github.com/dekokun) |
 | 7/26. | Chapter 3,4 | [taketo957](https://github.com/taketo957) [dekokun](https://github.com/dekokun) |
-| 8/2.  | Part2. Principles p49-66  |         |
-| 8/9.  | Part2. Principles p67-86  |         |
-| 8/16. | Part2. Principles p87-106 |         |
+| 8/2.  | Chapter 5,6 | [masayoshi634](https://github.com/masayoshi634)  [y_uuki](https://github.com/yuuki) |
+| 8/9.  | Chapter 7,8 | [dekokun](https://github.com/dekokun) [taketo957](https://github.com/taketo957) |
+| 8/16. | Chapter 7,9 | [dekokun](https://github.com/dekokun) [ichirin2501](https://github.com/ichirin2501) |
 
 ## References
 
