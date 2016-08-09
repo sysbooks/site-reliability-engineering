@@ -12,6 +12,8 @@ Reading the SRE book
 | 8/2.  | Chapter 5,6 | [masayoshi634](https://github.com/masayoshi634)  [y_uuki](https://github.com/yuuki) |
 | 8/9.  | Chapter 7,8 | [dekokun](https://github.com/dekokun) [hagihala](https://github.com/hagihala) |
 | 8/16. | Chapter 7,9 | [dekokun](https://github.com/dekokun) [ichirin2501](https://github.com/ichirin2501) |
+| 8/23. | Chapter 7,10 | [dekokun](https://github.com/dekokun) [masayoshi](https://github.com/ichirin2501) |
+| 8/30. | Chapter 11,18| [masayoshi](https://github.com/ichirin2501) [yuuki](https://github.com/yuuki) |
 
 ## References
 
