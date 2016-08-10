@@ -57,12 +57,13 @@
 - ベンダからAPIを提供されない場合は自分でAPIを構築する
 - 特定のタスクのための製品を購入することは短期的には安く済むが、長期的なコスト削減のためのAPIを構築するため、自分たちでソリューションを作り上げることを選択する
 - Googleは自動システム管理の自動化のための障害を取り除くことに多くの時間を費やし、またシステム自身が自分を管理するような自動システムを開発してきた
-- Given how Google manages its source code [Pot16], the availability of that code for more or less any system that SRE touches also means that our mission to "own the product in production" is much easier because we control the entirety of the stack.
-- 現実的には、全てをシステム自身に自動管理できるわけではない
+- Googleがそのソースコードをどのように管理しているか(The Motivation for a Monolithic Codebase:)については、SREがさわるシステムのソースコードへ触れることは、また、"own the product in production(プロダクション環境の中のプロダクトを保持する？？？)"へのSREのミッションが、全てのスタックをコントロールできるという理由で圧倒的に簡単だということを意味している
+- 現実的には、全てをシステム自身で自動管理できるわけではない
 - 全てのコンポーネントを自律管理できるわけではないし、人によって自動化をすすめる能力などの違いがある
 - 重要なシステムの中には持続する設計になっていなかったり自動化のためのインターフェースの存在しない迅速なプロトタイプとしてスタートしたものもある(大変そうですね)
-- 前の章(アクセス可能なAPIをもってないものを避ける等)では自分たちのポジションに対する過激な発言をしましたが、but one that we have been broadly successful at putting into action within the Google context.
-- In general, we have chosen to create platforms where we could, or to position ourselves so that we could create platforms over time. We view this platform-based approach as necessary for manageability and scalability.
+- 前の章(アクセス可能なAPIをもってないものを避ける等)では自分たちのポジションに対する過激な発言をしましたが、one that we have been broadly successful at putting into action within the Google context.
+- 一般的には、私たちはplatformを作ることを選んだ。もしくは、自分たち自身をplatformを作れるようなポジションにおいているので、我々はplatformを作れるようになってきた
+- 私たちは、このplatformベースのアプローチを管理のしやすさとスケーラビリティのために必要だと感じている
 
 ## The Use Cases for Automation
 
