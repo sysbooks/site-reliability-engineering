@@ -44,7 +44,9 @@
 ## Modularity
 
 - オブジェクト指向プログラミングに適用する数多くのルールは、分散システムの設計にも適用される
-- modularityのコンセプトはデータフォーマットにも適用できる。Googleの「protocol buffers」の目的はbackward compabilityとforward compatible
+- APIのmodularityの概念はAPIの変更をどのように導入するかまで拡張される。
+  - 1回の変更で開発者にシステム全体をrebuildさせて新しいバグをいれるリスクがある => Versioning APIs
+- modularityのコンセプトはデータフォーマットにも適用できる。Googleの「protocol buffers」の目的はbackward compabilityとforward compatibleをもつフォーマットを作ることだった。
 
 ## Release Simplicity
 
