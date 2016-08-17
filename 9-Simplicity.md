@@ -43,7 +43,8 @@
 
 ## Modularity
 
-- Googleの「protocol buffers」
+- オブジェクト指向プログラミングに適用する数多くのルールは、分散システムの設計にも適用される
+- modularityのコンセプトはデータフォーマットにも適用できる。Googleの「protocol buffers」の目的はbackward compabilityとforward compatible
 
 ## Release Simplicity
 
