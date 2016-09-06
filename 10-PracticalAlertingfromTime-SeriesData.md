@@ -115,5 +115,65 @@ http_responses map:code 200:25 404:0 500:12
   - 事前に定義された間隔で、Borgmonは、各ターゲットに/ varz URIをフェッチし、結果をデコードし、メモリ内の値を保存
   - Borgmon also spreads the collection from each instance in the target list over the whole interval, so that collection from each target is not in lockstep with its peers.
 
+- Storage in the Time-Series Arena
+  - figure10-1のように管理
+  - in-memory databaseを使用し、一定期間が経つとdiskに書き込む
+  - In practice, the structure is a fixed-sized block of memory, known as the time-series arena, with a garbage collector that expires the oldest entries once the arena is full.
+  - horizon
+    - RAM内の一番古いエントリと一番新しいエントリの差
+    - datacenter Borgmonとglobal Borgmonは12時間
+    - 一つのデータに24byte必要だと12時間、1分単位では17GBのRAMを使う
+  - RAMではなくディスクにするものはTSDBと呼ばれる
+  - Borgmonでは古いデータをTSDBに投げる
+    - TSDBは遅いが、安く巨大なデータを扱える
 
+- Labels and Vectors
+  - figure10-2のように一次元にvalueを突っ込んでいく
+  - timestampは不要
+    - because the values are inserted in the vector at regular intervals in time
+    - インターバルがわかれば計算できる
+  - 時系列データの名前はlabelsetである
+  - labelsetはkey=valueの1以上のペア(labes)からなる(varz pageにkeyはある)
+  - TSDBで一意にするために最低でも以下のlabelは付いている
+    - var  the name of the variable
+    - job  the name given to the type of server being monitored
+    - service  A loosely defined collection of jobs that provide a service to users, either internal or external
+    - zone  location (typically the datacenter)
+  - labelsetの例
+    - {var=http_requests,job=webserver,instance=host0:80,service=web,zone=us-west}
+  - 問い合わせクエリはすべてのlabelをセットする必要はない
+    - その場合はmatchしたものすべてが変える
+    - 問い合わせ {var=http_requests,job=webserver,service=web,zone=us-west}
+      - {var=http_requests,job=webserver,instance=host0:80,service=web,zone=us-west} 10
+      - {var=http_requests,job=webserver,instance=host1:80,service=web,zone=us-west} 9
+      - {var=http_requests,job=webserver,instance=host2:80,service=web,zone=us-west} 11
+      - {var=http_requests,job=webserver,instance=host3:80,service=web,zone=us-west} 0
+      - {var=http_requests,job=webserver,instance=host4:80,service=web,zone=us-west} 10
+    - 時間指定もできる  {var=http_requests,job=webserver,service=web,zone=us-west}[10m]
+      -  {var=http_requests,job=webserver,instance=host0:80, ...} 0 1 2 3 4 5 6 7 8 9 10
+      -  {var=http_requests,job=webserver,instance=host1:80, ...} 0 1 2 3 4 4 5 6 7 8 9
+      -  {var=http_requests,job=webserver,instance=host2:80, ...} 0 0 0 0 0 0 0 0 0 0 0
+      -  {var=http_requests,job=webserver,instance=host3:80, ...} 0 1 2 3 4 5 6 7 8 9 10
+
+- Rule Evaluation
+  - webserverの例
+    - 1クラスタのすべてのホスト(task)のステータスコード200以外のパーセンテージでアラート設定(エラーレート)
+    - 達成するには以下が必要
+      - すべてのtaskでレスポンスコードのレートの集計して、 時間内のエラーレートのベクターを出力
+      - ↑の合計エラーレート(sum of that vector) 時間内のクラスタのエラーレートを出力(single value) 200コードは除いて計算する
+      - クラスターをまたがったエラーレートをリクエストする トータルエラーレートを到着したエラーレートで割る クラスター内のエラーレートを出力する
+    - 115ページ下の方
+      - 116ページの例
+      - エラーレートをsumで足しておりtask:http_requestのエラーレートの合計がdc:http_requestとなる
+      - 今回の例では10分間のエラーレート
+        - “task HTTP requests 10-minute rate” and “datacenter HTTP requests 10-minute rate.”
+    - 117ページ
+      - 最終的に出てくる {var=dc:http_errors:ratio_rate10m,job=webserver}
+        - これでdcでのエラーレートはこのBorgmonに問い合わせるだけで良い
+
+- Alerting
+  - さっきの例ではエラーレートが0.15 > 0.01 だが、カウントが1なのでペンディングされる
+  - もう一度来たら2 > 1になる、2分間ペンディングになり、その後アラートが発行される
+  - 中央集中のAlertmanagerに通知される
+    - Alert PPCを受け取るとAlertmanagerは正しいところに通知をする
 
