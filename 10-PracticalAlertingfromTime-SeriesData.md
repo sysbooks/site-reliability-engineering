@@ -177,3 +177,38 @@ http_responses map:code 200:25 404:0 500:12
   - 中央集中のAlertmanagerに通知される
     - Alert PPCを受け取るとAlertmanagerは正しいところに通知をする
 
+- Sharding the Monitoring Topology
+  - Borgmonは他のBorgmonの時系列データをインポートできる
+  - 中央サーバが全部集めようとするとボトルネック、SPOFがある設計になる
+  - ストリーミングプロトコルでBorgmonが通信しあうことでCPU、通信量をtext-baseのvarzよりも抑えうことができる
+  - DC aggregation layer
+    - performs mostly rule evaluation for aggregation
+  - global layer
+    - split between rule evaluation and dashboarding.
+- Black-Box Monitoring
+  - いわゆる外形監視
+    - white-box monitoring means that you aren’t aware o what the users see.DNSエラーとかが見えないとか
+  - Proberでやっている
+    - runs a protocol check against a target and reports success or failure.
+    - The prober can send alerts directly to Alertmanager, or its own varz can be collected by a Borgmon
+    - アラートマネージャに直接送るか自身のvarzでBorgmonに取得させる
+  - validate the response payload of the protocol (HTML contents of an HTTP response)
+    - response times by operation type and payload size
+      - they can slice and dice the user-visible performance.
+      - データサイズを取るのはいいのかも知れない
+  - can be pointed at either the frontend domain or behind the load balancer.
+    - detect localized failures and suppress alerts.
+- Maintaining the Configuration
+  - Borgmon also supports language templates
+  - macro-like system enables engineers to construct libraries of rules that can be reused
+  - unit and regression tests
+  - Productio Monitoring teamっていうのがいて、CIを管理
+    - testが正常に回っているか、設定が変ではないか確認している
+  - ライブラリが大きく分けて2種類
+  - 共通系ライブラリ
+    - HTTP server library
+    - memory allocation
+    - the storage client library
+    - generic RPC services,
+  - generic aggregation rules for exported variables that engineers can use to model the topology of their service. 
+    - provide a single global API, but be homed in many data‐centers.
