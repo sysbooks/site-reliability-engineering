@@ -208,12 +208,19 @@ Designing at the right level
   - are you interested in software development that produces results that can be used across teams, possibly as a standard for the organization?
   - 大きな組織では、後者の変化には時間がかかる。
 - 以下はGoogleのガイドラインである
-
 - Create and communicate a clear message
+  - あなたのストラテジーやプラン(ちゃんとソフトウェアを作りましょうみたいな感じ)を定義し、伝えることは重要である
+  - SREsは懐疑的なため、最初はそのような努力は、オーバヘッドが多すぎる、決してうまくいかないというようなことを言うかもしれない
+  - このストラテジーがどのようにしてSREを助けるのかについて説得力のあるケースを作ることにより、始めなさい
+    - ConsitentでSupportedなソフトウェアは新しいSREsのスピードを高める
+    - 同じタスクを実行する方法の数を減らすことにより、組織全体が単一のチームが開発したスキルで利益をえる
 - Evaluate your organization's capabilities
+  - SREは多くのスキルをもつ反面、ユーザ向けのプロダクトをつくった経験が浅い
+  - プロダクト開発チームに助けてもらう
 - Launch and iterate
 - Don't lower your standards
 
+あなたのソフトウェア開発の奮闘のための信頼を構築するために、長い時間がかかる。しかし、misstempにより信頼を失う時間は短い。
 
 ## Conclutions
 
